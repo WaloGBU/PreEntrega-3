@@ -23,7 +23,11 @@ body{
     background-color: black;
 }
 
-.nav-container .navbar h1{
+.navbar-titulo{
+    justify-self: center;
+    margin-left: 20px;
+    color: white;
+    margin-top: 4vh;
     font-family: 'Beth Ellen', cursive;
     font-family: 'Holtwood One SC', serif;
     font-family: 'Rubik Dirt', cursive;
@@ -31,14 +35,6 @@ body{
     font-family: 'Rye', cursive;
     font-family: 'Vast Shadow', cursive;
     font-size: 40px;
-}
-
-.navbar-logo{
-    justify-self: start;
-    margin-left: 20px;
-    color: #fff;
-    margin-top: 4vh;
-    cursor: pointer;
 }
 
 /*Estilos del subtitulo*/
