@@ -70,6 +70,7 @@ footer{
 
 footer p{
     text-align: center;
+    margin-top: 1rem;
     padding: 2rem;
     color: white;
     
@@ -91,6 +92,7 @@ footer p{
     text-align: center;
     font-family: arial;
     margin: 10px;
+    padding: 3px;
 }
 
 .card img{
