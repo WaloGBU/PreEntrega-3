@@ -13,7 +13,6 @@ const productos = [
     { id: 12, categoria: "Bajo", marca: "Fender", modelo: "Precision Bass", precio: 3500, cantidad: 1, img: "./img/FenderPrecisionBass.png" }
 ]
 
-
 const pintarCarrito = () => {
     modalContainer.innerHTML = ""
     modalContainer.style.display = "flex"
@@ -93,11 +92,11 @@ const pintarCarrito = () => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Sí, lo quiero comprar'
+      confirmButtonText: 'Sí, quiero comprar'
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          'Compra confirmada',
+          'Gracias por su compra',
           'Ha adquirido los productos exitosamente',
           'success'
         )
