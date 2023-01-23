@@ -15,26 +15,26 @@ const productos = [
 
 
 const pintarCarrito = () => {
-    modalContainer.innerHTML = "";
-    modalContainer.style.display = "flex";
-    const modalHeader = document.createElement("div");
-    modalHeader.className = "modal-header";
-    modalHeader.innerHTML = `<h1 class="modal-header-title">Carrito</h1>`;
-    modalContainer.append(modalHeader);
+    modalContainer.innerHTML = ""
+    modalContainer.style.display = "flex"
+    const modalHeader = document.createElement("div")
+    modalHeader.className = "modal-header"
+    modalHeader.innerHTML = `<h1 class="modal-header-title">Carrito</h1>`
+    modalContainer.append(modalHeader)
   
-    const modalbutton = document.createElement("h1");
-    modalbutton.innerText = "x";
-    modalbutton.className = "modal-header-button";
+    const modalbutton = document.createElement("h1")
+    modalbutton.innerText = "x"
+    modalbutton.className = "modal-header-button"
   
     modalbutton.addEventListener("click", () => {
-      modalContainer.style.display = "none";
-    });
+      modalContainer.style.display = "none"
+    })
   
-    modalHeader.append(modalbutton);
+    modalHeader.append(modalbutton)
   
     carrito.forEach((product) => {
-      let carritoContent = document.createElement("div");
-      carritoContent.className = "modal-content";
+      let carritoContent = document.createElement("div")
+      carritoContent.className = "modal-content"
       carritoContent.innerHTML = `
           <img src="${product.img}">
           <h3>${product.nombre}</h3>
@@ -45,41 +45,65 @@ const pintarCarrito = () => {
           <span class="sumar"> + </span>
           <p>Total: ${product.cantidad * product.precio} $</p>
           <span class="delete-product"> ❌ </span>
-        `;
+        `
   
-      modalContainer.append(carritoContent);
+      modalContainer.append(carritoContent)
   
-      let restar = carritoContent.querySelector(".restar");
+      let restar = carritoContent.querySelector(".restar")
   
       restar.addEventListener("click", () => {
         if (product.cantidad !== 1) {
-          product.cantidad--;
+          product.cantidad--
         }
-        saveLocal();
-        pintarCarrito();
+        saveLocal()
+        pintarCarrito()
       });
   
-      let sumar = carritoContent.querySelector(".sumar");
+      let sumar = carritoContent.querySelector(".sumar")
       sumar.addEventListener("click", () => {
-        product.cantidad++;
-        saveLocal();
-        pintarCarrito();
-      });
+        product.cantidad++
+        saveLocal()
+        pintarCarrito()
+      })
   
       let eliminar = carritoContent.querySelector(".delete-product");
   
       eliminar.addEventListener("click", () => {
-        eliminarProducto(product.id);
+        eliminarProducto(product.id)
       });
   
     });
   
-    const total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0);
+    const total = carrito.reduce((acc, el) => acc + el.precio * el.cantidad, 0)
   
-    const totalBuying = document.createElement("div");
-    totalBuying.className = "total-content";
-    totalBuying.innerHTML = `Total a pagar: ${total} $`;
-    modalContainer.append(totalBuying);
+    const totalBuying = document.createElement("div")
+    totalBuying.className = "total-content"
+    totalBuying.innerHTML = `Total a pagar: ${total} $`
+    modalContainer.append(totalBuying)
+
+    const boton = document.createElement("button")
+    boton.className = "boton"
+    boton.innerHTML = "<button>Comprar</button>"
+    modalContainer.append(boton)
+
+    boton.addEventListener("click", () => {
+    Swal.fire({
+      title: '¿Está seguro que desea confirmar la compra?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, lo quiero comprar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Compra confirmada',
+          'Ha adquirido los productos exitosamente',
+          'success'
+        )
+      }
+    })
+  })
   };
   
   verCarrito.addEventListener("click", pintarCarrito);
@@ -110,23 +134,3 @@ const pintarCarrito = () => {
   
   carritoCounter();
   
-let botonComprar = document.getElementById ("Comprar")
-botonComprar.addEventListener("click", () => {
-  Swal.fire({
-    title: 'Are you sure?',
-    text: "You won't be able to revert this!",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
-        'success'
-      )
-    }
-  })
-})
